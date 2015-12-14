@@ -6,75 +6,96 @@ var calculateUpdate = require('./index'),
 var expect = require('chai').expect;
 
 
+var expectUpdate = function(desc, oldString, newString) {
+  createTest(it, desc, oldString, newString);
+};
+
+expectUpdate.only = function(desc, oldString, newString) {
+  createTest(it.only, desc, oldString, newString);
+};
+
+
 describe('selection-update', function() {
 
   describe('should handle select ALL', function() {
 
-    it('with content removed from middle', expectUpdate('|AABBC|', 'AA|C'));
+    expectUpdate('content removed from middle', '|AABBC|', 'AA|C');
 
-    it('with content added in middle', expectUpdate('|AABBC|', 'AAVV|BBC'));
+    expectUpdate('content added in middle', '|AABBC|', 'AAVV|BBC');
 
   });
 
 
   describe('should handle same string update', function() {
 
-    it('keep mid selection', expectUpdate('AABB|CCC', 'AABB|CCC'));
+    expectUpdate('keep mid selection', 'AABB|CCC', 'AABB|CCC');
 
-    it('keep start selection', expectUpdate('|AABBCCC', '|AABBCCC'));
+    expectUpdate('keep start selection', '|AABBCCC', '|AABBCCC');
 
-    it('keep end selection', expectUpdate('AABBCCC|', 'AABBCCC|'));
+    expectUpdate('keep end selection', 'AABBCCC|', 'AABBCCC|');
 
   });
 
 
   describe('should handle empty string', function() {
 
-    it('with content added', expectUpdate('|', 'AAA|'));
+    expectUpdate('content added', '|', 'AAA|');
 
   });
-
 
   describe('should modify cursor adding content', function() {
 
-    it('after cursor', expectUpdate('AA|BBC', 'AABBCVV|'));
+    expectUpdate('after cursor', 'AA|BBC', 'AABBCVV|');
 
-    it('directly after cursor', expectUpdate('AA|BBC', 'AAVV|BBC'));
+    expectUpdate('directly after cursor', 'AA|BBC', 'AAVV|BBC');
 
-    it('before cursor', expectUpdate('AA|BBC', 'VV|AABBC'));
+    expectUpdate('before cursor', 'AA|BBC', 'VV|AABBC');
 
-    it('directly before cursor', expectUpdate('AA|BBC', 'AAVV|BBC'));
+    expectUpdate('directly before cursor', 'AA|BBC', 'AAVV|BBC');
 
-  });
+    expectUpdate('same string add', 'AA|', 'AAAA|');
 
+    expectUpdate('same string add in middle', 'AAAT|F', 'AAATTT|F');
 
-  describe('should handle replace', function() {
-
-    it('with longer text', expectUpdate('AA|BB', 'XXFFOOLL|'));
-
-    it('with shorter text', expectUpdate('XXFFOO|LL', 'XX|AABB'));
+    expectUpdate('same string add in middle (2)', 'AAAT|TF', 'AAATTT|TF');
 
   });
 
 
   describe('should modify cursor removing content', function() {
 
-    it('after cursor', expectUpdate('AA|BBVVC', 'AABB|C'));
+    expectUpdate('after cursor', 'AA|BBVVC', 'AABB|C');
 
-    it('directly after cursor', expectUpdate('AABB|VVC', 'AA|VVC'));
+    expectUpdate('directly after cursor', 'AABB|VVC', 'AA|VVC');
 
-    it('before cursor', expectUpdate('AAVVBB|C', 'AA|BBC'));
+    expectUpdate('before cursor', 'AAVVBB|C', 'AA|BBC');
 
-    it('directly before cursor', expectUpdate('AABB|VVC', 'AA|VVC'));
+    expectUpdate('directly before cursor', 'AABB|VVC', 'AA|VVC');
+
+    expectUpdate('same string remove', 'AAAA|', 'AA|');
+
+    expectUpdate('same string remove from middle', 'AAATTT|F', 'AAAT|F');
+
+    expectUpdate('same string remove from middle (2)', 'AAATTT|TF', 'AAAT|TF');
+  });
+
+
+  describe('should handle replace', function() {
+
+    expectUpdate('longer text', 'AA|BB', 'XXFFOOLL|');
+
+    expectUpdate('shorter text', 'XXFFOO|LL', 'XX|AABB');
+
+    expectUpdate('same length text, end selection', 'FOO|', 'BAR|');
 
   });
 
 });
 
 
-function expectUpdate(oldString, newString) {
+function createTest(it, desc, oldString, newString) {
 
-  return function() {
+  it('(' + oldString + ') => (' + newString + ') - ' + desc, function() {
 
     var oldStart, oldEnd;
 
@@ -119,5 +140,5 @@ function expectUpdate(oldString, newString) {
     // then
     expect(newSelection).to.eql(range(newStart, newEnd));
 
-  }
+  });
 }
