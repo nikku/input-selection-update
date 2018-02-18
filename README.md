@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/nikku/selection-update.svg?branch=master)](https://travis-ci.org/nikku/selection-update)
 
-Computing input selection updates on external file changes, as if we used browser managed _undo_ and _redo_.
+Computing input selection updates on external content changes, as if we used browser managed _undo_ and _redo_.
 
 
 ## API
