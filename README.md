@@ -56,6 +56,11 @@ function updateInput($input, newValue) {
 ```
 
 
+## Related
+
+* [selection-ranges](https://github.com/nikku/selection-ranges) - manipulate selection ranges on contenteditable elements
+
+
 ## License
 
 MIT
