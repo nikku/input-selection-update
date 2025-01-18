@@ -1,6 +1,6 @@
 # selection-update
 
-[![Build Status](https://travis-ci.com/nikku/selection-update.svg?branch=master)](https://travis-ci.com/nikku/selection-update)
+[![CI](https://github.com/nikku/selection-update/actions/workflows/CI.yml/badge.svg)](https://github.com/nikku/selection-update/actions/workflows/CI.yml)
 
 Computing input selection updates on external content changes, as if we used browser managed _undo_ and _redo_.
 
