@@ -4,6 +4,7 @@
   "description": "Computing selection updates on external INPUT value changes, browser style",
   "main": "index.js",
   "scripts": {
+    "all": "npm test",
     "test": "mocha test.js"
   },
   "type": "module",
