@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/nikku/selection-update",
   "devDependencies": {
-    "chai": "^3.4.1",
-    "mocha": "^2.3.4"
+    "chai": "^5.1.2",
+    "mocha": "^11.0.1"
   }
 }
