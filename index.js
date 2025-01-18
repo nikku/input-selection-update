@@ -11,11 +11,7 @@
 export function calculateUpdate(currentSelection, currentValue, newValue) {
 
   var currentCursor = currentSelection.start,
-      newCursor = currentCursor,
-      diff = newValue.length - currentValue.length,
-      idx;
-
-  var lengthDelta = newValue.length - currentValue.length;
+      newCursor = currentCursor;
 
   var currentTail = currentValue.substring(currentCursor);
 
@@ -133,13 +129,5 @@ export function createRange(start, end) {
   return {
     start: start,
     end: end === undefined ? start : end
-  };
-}
-
-
-function splitStr(str, position) {
-  return {
-    before: str.substring(0, position),
-    after: str.substring(position)
   };
 }
