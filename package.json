@@ -4,7 +4,8 @@
   "description": "Computing selection updates on external INPUT value changes, browser style",
   "main": "index.js",
   "scripts": {
-    "all": "npm test",
+    "all": "npm run lint && npm test",
+    "lint": "eslint .",
     "test": "mocha test.js"
   },
   "type": "module",
@@ -35,6 +36,8 @@
   "homepage": "https://github.com/nikku/selection-update",
   "devDependencies": {
     "chai": "^5.1.2",
+    "eslint": "^9.18.0",
+    "eslint-plugin-bpmn-io": "^2.1.0",
     "mocha": "^11.0.1"
   },
   "files": [
