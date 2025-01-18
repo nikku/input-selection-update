@@ -1,9 +1,9 @@
-'use strict';
+import {
+  calculateUpdate,
+  createRange as range
+} from 'selection-update';
 
-var calculateUpdate = require('./index'),
-    range = require('./index').range;
-
-var expect = require('chai').expect;
+import { expect } from 'chai';
 
 
 var expectUpdate = function(desc, oldString, newString) {
@@ -42,6 +42,7 @@ describe('selection-update', function() {
     expectUpdate('content added', '|', 'AAA|');
 
   });
+
 
   describe('should modify cursor adding content', function() {
 

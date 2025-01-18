@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Calculate the selection update for the given
  * current and new input values.
@@ -10,7 +8,7 @@
  *
  * @return {Object} newSelection as {start, end}
  */
-function calculateUpdate(currentSelection, currentValue, newValue) {
+export function calculateUpdate(currentSelection, currentValue, newValue) {
 
   var currentCursor = currentSelection.start,
       newCursor = currentCursor,
@@ -44,10 +42,8 @@ function calculateUpdate(currentSelection, currentValue, newValue) {
     }
   }
 
-  return range(newCursor);
+  return createRange(newCursor);
 }
-
-module.exports = calculateUpdate;
 
 
 function createDiff(currentValue, newValue) {
@@ -133,14 +129,12 @@ function createDiff(currentValue, newValue) {
  *
  * @return {Object} selection range as {start, end}
  */
-function range(start, end) {
+export function createRange(start, end) {
   return {
     start: start,
     end: end === undefined ? start : end
   };
 }
-
-module.exports.range = range;
 
 
 function splitStr(str, position) {
