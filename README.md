@@ -25,7 +25,7 @@ calculateUpdate(currentSelection, currentValue, newValue);
 ## Usage
 
 ```javascript
-var selectionUpdate = require('selection-update');
+import { calculateUpdate } from 'selection-update';
 
 /**
  * Update input with new value.
