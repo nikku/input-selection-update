@@ -1,6 +1,6 @@
 {
   "name": "selection-update",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Computing selection updates on external INPUT value changes, browser style",
   "main": "index.js",
   "scripts": {
